@@ -27,6 +27,37 @@ class Traveler {
 
 }
 
+//CHILD CLASSES FOR TRAVELER
+
+class Doctor extends Traveler {
+    constructor (name, foodamount, isHealthy) {
+        super(name, foodamount, isHealthy)
+
+
+    }
+    heal (traveler) {
+    isHealthy = true
+    }
+
+}
+
+class Hunter extends Traveler {
+    constructor (name, foodamount,isHealthy) {
+        super (name,foodamount, isHealthy )
+        this.foodamount =2
+    }
+
+    hunt () {
+    this.foodamount = this.foodamount + 5
+    }
+
+    eat ()  {
+
+    }
+
+
+}
+
 //METHODS FOR THE TRAVELER
 
 class Wagon {
