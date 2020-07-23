@@ -1,7 +1,7 @@
 
 
 class Traveler {
-    constructor(name, foodamount, isHealthy) {
+    constructor(name) {
 
         this.name = name
         this.foodamount = 1
@@ -30,33 +30,63 @@ class Traveler {
 //CHILD CLASSES FOR TRAVELER
 
 class Doctor extends Traveler {
-    constructor (name, foodamount, isHealthy) {
-        super(name, foodamount, isHealthy)
-
+    constructor(name) {
+        super(name)
 
     }
-    heal (traveler) {
-    isHealthy = true
+
+
+    heal(traveler) {
+        traveler.isHealthy = true
     }
 
 }
 
 class Hunter extends Traveler {
-    constructor (name, foodamount,isHealthy) {
-        super (name,foodamount, isHealthy )
-        this.foodamount =2
+    constructor(name) {
+        super(name)
+        this.foodamount = 2
     }
 
-    hunt () {
-    this.foodamount = this.foodamount + 5
+    hunt() {
+        this.foodamount = this.foodamount + 5
     }
 
-    eat ()  {
+    eat() {
+
+        if (this.foodamount > 2) {
+            this.foodamount = this.foodamount - 2
+            
+        } else { this.foodamount =0
+            this.isHealthy = false;
+        }
+
+    }
+
+    giveFood(traveler, numOfFoodUnits) {
+        if (this.foodamount >= numOfFoodUnits) {
+
+            this.foodamount = this.foodamount - numOfFoodUnits
+
+            traveler.foodamount = traveler.foodamount + numOfFoodUnits
+        }
 
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 //METHODS FOR THE TRAVELER
 
@@ -77,7 +107,7 @@ class Wagon {
             this.passengerslist.push(traveler)
         }
 
-        // console.log(this.passengerslist)
+
     }
 
 
@@ -87,11 +117,9 @@ class Wagon {
 
             let currentPassenger = this.passengerslist[i];
 
-            console.log(currentPassenger)
 
             let currentHealth = currentPassenger.isHealthy
 
-            //console.log(currentHealth)
 
             if (currentHealth === false) {
                 return true
@@ -106,16 +134,17 @@ class Wagon {
 
     totalFood() {
 
+        let TOTAL = 0
         for (let i = 0; i < this.passengerslist.length; i = i + 1) {
 
             let currentPassenger = this.passengerslist[i];
+            TOTAL = TOTAL + currentPassenger.foodamount
 
-            let totalFoodAmount = currentPassenger.foodamount
 
-            return (totalFoodAmount)
+
         }
 
-
+        return (TOTAL)
 
     }
 
